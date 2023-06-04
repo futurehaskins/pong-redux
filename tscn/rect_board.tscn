@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://baurjv4dr2yso"]
+[gd_scene load_steps=24 format=3 uid="uid://baurjv4dr2yso"]
 
 [ext_resource type="Texture2D" uid="uid://c2kqwnphrc4i0" path="res://assets/background.png" id="1_12jnl"]
 [ext_resource type="Texture2D" uid="uid://de12kjkihoviu" path="res://assets/uibar.png" id="2_1762v"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/Player Right.gd" id="10_sr4sl"]
 [ext_resource type="PackedScene" uid="uid://bub76p0i3bnrr" path="res://tscn/ball.tscn" id="12_7qi1f"]
 [ext_resource type="FontFile" uid="uid://ctje33g4vstjo" path="res://fonts/upheavtt.ttf" id="13_o4b3h"]
+[ext_resource type="PackedScene" uid="uid://dfvk6hfa7sxii" path="res://tscn/splode.tscn" id="15_fbt6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojja3"]
 size = Vector2(2, 42)
@@ -478,6 +479,7 @@ shape = SubResource("RectangleShape2D_muysb")
 [node name="Player Layer" type="Node2D" parent="."]
 z_index = 20
 script = ExtResource("7_h0g0b")
+splosion = ExtResource("15_fbt6m")
 
 [node name="PlayerLeft" type="RigidBody2D" parent="Player Layer"]
 position = Vector2(20, 72.5)

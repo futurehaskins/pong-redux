@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfvk6hfa7sxii"]
+
+[ext_resource type="Texture2D" uid="uid://cg133atwqqek2" path="res://assets/ball.png" id="1_m8esr"]
+
+[sub_resource type="Gradient" id="Gradient_7ysdb"]
+offsets = PackedFloat32Array(0.764228, 1)
+colors = PackedColorArray(0.99558, 0.99558, 0.99558, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g74ux"]
+gradient = SubResource("Gradient_7ysdb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p6wjn"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.5
+scale_min = 0.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_g74ux")
+hue_variation_min = -1.0
+hue_variation_max = 0.5
+
+[node name="splode" type="GPUParticles2D"]
+position = Vector2(2, 0)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_p6wjn")
+texture = ExtResource("1_m8esr")
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+fixed_fps = 60

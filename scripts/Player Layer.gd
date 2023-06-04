@@ -3,6 +3,8 @@ extends Node2D
 var ball # Seek and Destroy!! (mostly, but not always)
 var inner_court_size = Vector2(6, 16) #Top-left court bounds
 var outer_court_size = Vector2(234, 129) #Bottom-right court bounds
+@export var splosion : PackedScene # The thing to instance, handled in editor
+var splode # We're gonna grab the node, too
 signal goal(player:String) #All one signal, baby!!
 
 func _ready() -> void:
@@ -48,6 +50,19 @@ func _on_goal_east(body:Node) -> void:
 	if body.is_in_group("ball"):
 		# Turn off ball spawning for the goal period
 		set_physics_process(false)
+		# Create the Goal explosion
+		splosion.instantiate()
+		# Set its name so we can find it
+		splosion.name = "goalExplosion"
+		# Grab the node so we can work with it
+		splode = get_node("goalExplosion")
+		# Set its position data
+		splosion.position = body.position
+		splosion.rotation = body.rotation
+		# Make sure its on
+		splosion.emitting = true
+		# Add it to the scene tree
+		add_child(splode)
 		# kill that ball for respawn
 		body.queue_free()
 		# All one custom signall baby, heading over to UI Elements
@@ -64,6 +79,8 @@ func _on_goal_west(body:Node) -> void:
 		goal.emit("Right")
 
 func _on_splash_timer_timeout():
+	# Kill the goal explosion, just to be memory-safe
+	splode.queue_free()
 	# Turn ball spawn back on
 	set_physics_process(true)
 
